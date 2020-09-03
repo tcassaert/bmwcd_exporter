@@ -1,0 +1,1795 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 23,
+      "options": {
+        "content": "<h1 style=\"font-size:60px;text-align=center\">BMW X1 xDrive25e</h1>         ",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "SECURED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 3
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_door_lock_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Door lock state",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 5,
+        "y": 3
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_door_driver_front_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Door driver - front",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 10,
+        "y": 3
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_door_driver_rear_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Door driver - rear",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 3
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_vehicle_check_cbs_due_date * 1000",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Vehicle check due date",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 20
+              },
+              {
+                "color": "dark-green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 6
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_charge_level",
+          "interval": "",
+          "legendFormat": "Charge level",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Charge level",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 5,
+        "y": 6
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_door_passenger_front_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Door passenger - front",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 10,
+        "y": 6
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_door_passenger_rear_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Door passenger - rear",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 2000
+              },
+              {
+                "color": "dark-green",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "km"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 6
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_vehicle_check_cbs_remaining_mileage",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Vehicle check in",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 5,
+        "y": 9
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_hood_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hood",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "CLOSED",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "OPEN",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 10,
+        "y": 9
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_trunk_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Trunk",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 9
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_oil_check_cbs_due_date * 1000",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Oil service due date",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          },
+          "unit": "km"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 12
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_mileage",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Mileage",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mileage",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 10
+              },
+              {
+                "color": "dark-green",
+                "value": 25
+              }
+            ]
+          },
+          "unit": "lengthkm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 5,
+        "y": 12
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_remaining_electric_range",
+          "interval": "",
+          "legendFormat": "Hybrid range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Remaining range - Electric",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "lengthkm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 10,
+        "y": 12
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_remaining_hybrid_range",
+          "interval": "",
+          "legendFormat": "Hybrid range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Remaining range - Hybrid",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 2000
+              },
+              {
+                "color": "dark-green",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "km"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 12
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_oil_cbs_remaining_mileage",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Oil service in",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 15
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "expr": "bmwcd_brake_fluid_check_cbs_due_date * 1000",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Brake fluid check due date",
+      "type": "stat"
+    },
+    {
+      "backgroundColor": "rgba(128,128,128,0.1)",
+      "colorMaps": [
+        {
+          "color": "#E0B400",
+          "text": "0"
+        },
+        {
+          "color": "#1F60C4",
+          "text": "1"
+        },
+        {
+          "color": "#37872D",
+          "text": "2"
+        }
+      ],
+      "crosshairColor": "#8F070C",
+      "datasource": null,
+      "display": "timeline",
+      "expandFromQueryS": 0,
+      "extendLastValue": true,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "highlightOnMouseover": true,
+      "id": 30,
+      "legendSortBy": "-ms",
+      "lineColor": "rgba(0,0,0,0.1)",
+      "metricNameColor": "#000000",
+      "pluginVersion": "7.1.5",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "rowHeight": 50,
+      "showDistinctCount": false,
+      "showLegend": true,
+      "showLegendCounts": true,
+      "showLegendNames": true,
+      "showLegendPercent": true,
+      "showLegendTime": true,
+      "showLegendValues": true,
+      "showTimeAxis": true,
+      "showTransitionCount": true,
+      "targets": [
+        {
+          "expr": "bmwcd_charging_status",
+          "interval": "",
+          "legendFormat": "Charging status",
+          "refId": "A"
+        }
+      ],
+      "textSize": 24,
+      "textSizeTime": 12,
+      "timeFrom": null,
+      "timeOptions": [
+        {
+          "name": "Years",
+          "value": "years"
+        },
+        {
+          "name": "Months",
+          "value": "months"
+        },
+        {
+          "name": "Weeks",
+          "value": "weeks"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Milliseconds",
+          "value": "milliseconds"
+        }
+      ],
+      "timePrecision": {
+        "name": "Minutes",
+        "value": "minutes"
+      },
+      "timeShift": null,
+      "timeTextColor": "#d8d9da",
+      "title": "Charging status",
+      "type": "natel-discrete-panel",
+      "units": "short",
+      "useTimePrecision": false,
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "Not charging",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Charging",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "Fully charged",
+          "value": "2"
+        },
+        {
+          "op": "=",
+          "text": "Not charging",
+          "value": "null"
+        }
+      ],
+      "valueTextColor": "#000000",
+      "writeAllValues": false,
+      "writeLastValue": true,
+      "writeMetricNames": false
+    },
+    {
+      "backgroundColor": "rgba(128,128,128,0.1)",
+      "colorMaps": [
+        {
+          "color": "#E0B400",
+          "text": "0"
+        },
+        {
+          "color": "#37872D",
+          "text": "1"
+        }
+      ],
+      "crosshairColor": "#8F070C",
+      "datasource": null,
+      "display": "timeline",
+      "expandFromQueryS": 0,
+      "extendLastValue": true,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "highlightOnMouseover": true,
+      "id": 31,
+      "legendSortBy": "-ms",
+      "lineColor": "rgba(0,0,0,0.1)",
+      "metricNameColor": "#000000",
+      "pluginVersion": "7.1.5",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "rowHeight": 50,
+      "showDistinctCount": false,
+      "showLegend": true,
+      "showLegendCounts": true,
+      "showLegendNames": true,
+      "showLegendPercent": true,
+      "showLegendTime": true,
+      "showLegendValues": true,
+      "showTimeAxis": true,
+      "showTransitionCount": true,
+      "targets": [
+        {
+          "expr": "bmwcd_connection_status",
+          "interval": "",
+          "legendFormat": "Cable connection",
+          "refId": "A"
+        }
+      ],
+      "textSize": 24,
+      "textSizeTime": 12,
+      "timeFrom": null,
+      "timeOptions": [
+        {
+          "name": "Years",
+          "value": "years"
+        },
+        {
+          "name": "Months",
+          "value": "months"
+        },
+        {
+          "name": "Weeks",
+          "value": "weeks"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Milliseconds",
+          "value": "milliseconds"
+        }
+      ],
+      "timePrecision": {
+        "name": "Minutes",
+        "value": "minutes"
+      },
+      "timeShift": null,
+      "timeTextColor": "#d8d9da",
+      "title": "Cable connection",
+      "type": "natel-discrete-panel",
+      "units": "short",
+      "useTimePrecision": false,
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "Disconnected",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Connected",
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "Disconnected",
+          "value": "null"
+        }
+      ],
+      "valueTextColor": "#000000",
+      "writeAllValues": false,
+      "writeLastValue": true,
+      "writeMetricNames": false
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 2,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 27,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bmwcd_remaining_electric_range",
+          "interval": "",
+          "legendFormat": "Remaining range - Electric",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Remaining range - Electric",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "lengthkm",
+          "label": null,
+          "logBase": 1,
+          "max": "55",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 2,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 28,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bmwcd_remaining_hybrid_range",
+          "interval": "",
+          "legendFormat": "Remaining range - Hybrid",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Remaining range - Hybrid",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "lengthkm",
+          "label": null,
+          "logBase": 1,
+          "max": "750",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 2,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "hiddenSeries": false,
+      "id": 25,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bmwcd_mileage",
+          "interval": "",
+          "legendFormat": "Mileage",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Mileage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "km",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 2,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "hiddenSeries": false,
+      "id": 26,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bmwcd_charge_level",
+          "interval": "",
+          "legendFormat": "Charge level",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Charge level",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "BMW Connected Drive",
+  "uid": "oOb-s7DMk",
+  "version": 16
+}
