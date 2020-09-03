@@ -31,10 +31,28 @@ import (
 )
 
 var (
-	mileage = promauto.NewGauge(
+	brakeFluidCheckDueDate = promauto.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "bmwcd_mileage",
-			Help: "The current mileage of the car",
+			Name: "bmwcd_brake_fluid_check_cbs_due_date",
+			Help: "Brake fluid check cbs due by date",
+		},
+	)
+	chargingStatus = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_charging_status",
+			Help: "Not charging (0), charging (1), fully charged (2)",
+		},
+	)
+	chargeLevel = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_charge_level",
+			Help: "Charge percentage",
+		},
+	)
+	connectionStatus = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_connection_status",
+			Help: "Charging cable connected (1) or disconnected (0)",
 		},
 	)
 	doorLockState = promauto.NewGauge(
@@ -67,6 +85,66 @@ var (
 			Help: "Door open (0) or closed (1)",
 		},
 	)
+	hood = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_hood_state",
+			Help: "Hood open (0) or closed (1)",
+		},
+	)
+	mileage = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_mileage",
+			Help: "The current mileage of the car",
+		},
+	)
+	oilCheckDueDate = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_oil_check_cbs_due_date",
+			Help: "Oil cbs due by date",
+		},
+	)
+	oilCheckRemainingMileage = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_oil_cbs_remaining_mileage",
+			Help: "Remaining kilometers before oil cbs",
+		},
+	)
+	remainingFuel = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_remaining_fuel",
+			Help: "Remaining liters of fuel in the tank",
+		},
+	)
+	remainingRangeElectric = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_remaining_electric_range",
+			Help: "Remaining kilometers of electric range",
+		},
+	)
+	remainingRangeHybrid = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_remaining_hybrid_range",
+			Help: "Remaining kilometers of hybrid range",
+		},
+	)
+	trunk = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_trunk_state",
+			Help: "Trunk open (0) or closed (1)",
+		},
+	)
+	vehicleCheckDueDate = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_vehicle_check_cbs_due_date",
+			Help: "Vehicle check cbs due by date",
+		},
+	)
+	vehicleCheckRemainingMileage = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "bmwcd_vehicle_check_cbs_remaining_mileage",
+			Help: "Remaining kilometers before vehicle check cbs",
+		},
+	)
 	windowDriverFront = promauto.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "bmwcd_window_driver_front_state",
@@ -91,103 +169,32 @@ var (
 			Help: "Window open (0) or closed (1)",
 		},
 	)
-	trunk = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_trunk_state",
-			Help: "Trunk open (0) or closed (1)",
-		},
-	)
-	hood = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_hood_state",
-			Help: "Hood open (0) or closed (1)",
-		},
-	)
-	remainingFuel = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_remaining_fuel",
-			Help: "Remaining liters of fuel in the tank",
-		},
-	)
-	remainingRangeElectric = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_remaining_electric_range",
-			Help: "Remaining kilometers of electric range",
-		},
-	)
-	remainingRangeHybrid = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_remaining_hybrid_range",
-			Help: "Remaining kilometers of hybrid range",
-		},
-	)
-	chargeLevel = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_charge_level",
-			Help: "Charge percentage",
-		},
-	)
-	oilCheckRemainingMileage = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_oil_cbs_remaining_mileage",
-			Help: "Remaining kilometers before oil cbs",
-		},
-	)
-	vehicleCheckRemainingMileage = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_vehicle_check_cbs_remaining_mileage",
-			Help: "Remaining kilometers before vehicle check cbs",
-		},
-	)
-	oilCheckDueDate = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_oil_check_cbs_due_date",
-			Help: "Oil cbs due by date",
-		},
-	)
-	vehicleCheckDueDate = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_vehicle_check_cbs_due_date",
-			Help: "Vehicle check cbs due by date",
-		},
-	)
-	brakeFluidCheckDueDate = promauto.NewGauge(
-		prometheus.GaugeOpts{
-			Name: "bmwcd_brake_fluid_check_cbs_due_date",
-			Help: "Brake fluid check cbs due by date",
-		},
-	)
 )
 
 func jsonToProm(status string) {
-	// Current mileage of the car
-	mileage.Set(gjson.Get(status, "mileage").Float())
-
-	// Kilometers untill service
-	oilCheckRemainingMileageValue := gjson.Get(status, "cbsData.#(cbsType==\"OIL\").cbsRemainingMileage").Float()
-	oilCheckRemainingMileage.Set(oilCheckRemainingMileageValue)
-
-	vehicleCheckRemainingMileageValue := gjson.Get(status, "cbsData.#(cbsType==\"VEHICLE_CHECK\").cbsRemainingMileage").Float()
-	vehicleCheckRemainingMileage.Set(vehicleCheckRemainingMileageValue)
-
-	// Due date service
-	oilCheckDueDateValue := gjson.Get(status, "cbsData.#(cbsType==\"OIL\").cbsDueDate").String()
-	oilCheckDueDate.Set(convertToEpoch(oilCheckDueDateValue))
 
 	brakeFluidCheckDueDateValue := gjson.Get(status, "cbsData.#(cbsType==\"BRAKE_FLUID\").cbsDueDate").String()
 	brakeFluidCheckDueDate.Set(convertToEpoch(brakeFluidCheckDueDateValue))
 
-	vehicleCheckDueDateValue := gjson.Get(status, "cbsData.#(cbsType==\"VEHICLE_CHECK\").cbsDueDate").String()
-	vehicleCheckDueDate.Set(convertToEpoch(vehicleCheckDueDateValue))
+	chargeLevelValue := gjson.Get(status, "chargingLevelHv").Float()
+	chargeLevel.Set(chargeLevelValue)
 
-	// State of the door lock
-	doorLockStateString := gjson.Get(status, "doorLockState").String()
-	if doorLockStateString == "UNLOCKED" {
-		doorLockState.Set(0)
+	chargingStatusValue := gjson.Get(status, "chargingStatus").String()
+	if chargingStatusValue == "FINISHED_FULLY_CHARGED" {
+		chargingStatus.Set(2)
+	} else if chargingStatusValue == "CHARGING" {
+		chargingStatus.Set(1)
 	} else {
-		doorLockState.Set(1)
+		chargingStatus.Set(0)
 	}
-	// State of the doors
+
+	connectionStatusValue := gjson.Get(status, "connectionStatus").String()
+	if connectionStatusValue == "CONNECTED" {
+		connectionStatus.Set(1)
+	} else {
+		connectionStatus.Set(0)
+	}
+
 	doorDriverFrontValue := gjson.Get(status, "doorDriverFront").String()
 	if doorDriverFrontValue == "OPEN" {
 		doorDriverFront.Set(0)
@@ -216,7 +223,50 @@ func jsonToProm(status string) {
 		doorPassengerRear.Set(1)
 	}
 
-	// State of the windows
+	doorLockStateValue := gjson.Get(status, "doorLockState").String()
+	if doorLockStateValue == "UNLOCKED" {
+		doorLockState.Set(0)
+	} else {
+		doorLockState.Set(1)
+	}
+
+	hoodValue := gjson.Get(status, "hood").String()
+	if hoodValue == "OPEN" {
+		hood.Set(0)
+	} else {
+		hood.Set(1)
+	}
+
+	mileage.Set(gjson.Get(status, "mileage").Float())
+
+	oilCheckDueDateValue := gjson.Get(status, "cbsData.#(cbsType==\"OIL\").cbsDueDate").String()
+	oilCheckDueDate.Set(convertToEpoch(oilCheckDueDateValue))
+
+	oilCheckRemainingMileageValue := gjson.Get(status, "cbsData.#(cbsType==\"OIL\").cbsRemainingMileage").Float()
+	oilCheckRemainingMileage.Set(oilCheckRemainingMileageValue)
+
+	remainingFuelValue := gjson.Get(status, "remainingFuel").Float()
+	remainingFuel.Set(remainingFuelValue)
+
+	remainingRangeElectricValue := gjson.Get(status, "remainingRangeElectric").Float()
+	remainingRangeElectric.Set(remainingRangeElectricValue)
+
+	remainingRangeHybridValue := gjson.Get(status, "remainingRangeFuel").Float()
+	remainingRangeHybrid.Set(remainingRangeHybridValue)
+
+	trunkValue := gjson.Get(status, "trunk").String()
+	if trunkValue == "OPEN" {
+		trunk.Set(0)
+	} else {
+		trunk.Set(1)
+	}
+
+	vehicleCheckRemainingMileageValue := gjson.Get(status, "cbsData.#(cbsType==\"VEHICLE_CHECK\").cbsRemainingMileage").Float()
+	vehicleCheckRemainingMileage.Set(vehicleCheckRemainingMileageValue)
+
+	vehicleCheckDueDateValue := gjson.Get(status, "cbsData.#(cbsType==\"VEHICLE_CHECK\").cbsDueDate").String()
+	vehicleCheckDueDate.Set(convertToEpoch(vehicleCheckDueDateValue))
+
 	windowDriverFrontValue := gjson.Get(status, "windowDriverFront").String()
 	if windowDriverFrontValue == "OPEN" {
 		windowDriverFront.Set(0)
@@ -244,37 +294,4 @@ func jsonToProm(status string) {
 	} else {
 		windowPassengerRear.Set(1)
 	}
-
-	// State of the hood
-	hoodValue := gjson.Get(status, "hood").String()
-	if hoodValue == "OPEN" {
-		hood.Set(0)
-	} else {
-		hood.Set(1)
-	}
-
-	// State of the trunk
-	trunkValue := gjson.Get(status, "trunk").String()
-	if trunkValue == "OPEN" {
-		trunk.Set(0)
-	} else {
-		trunk.Set(1)
-	}
-
-	// Remaining fuel
-	remainingFuelValue := gjson.Get(status, "remainingFuel").Float()
-	remainingFuel.Set(remainingFuelValue)
-
-	// Remaining electric range
-	remainingRangeElectricValue := gjson.Get(status, "remainingRangeElectric").Float()
-	remainingRangeElectric.Set(remainingRangeElectricValue)
-
-	// Remaining hybrid range
-	remainingRangeHybridValue := gjson.Get(status, "remainingRangeFuel").Float()
-	remainingRangeHybrid.Set(remainingRangeHybridValue)
-
-	// Charge level
-	chargeLevelValue := gjson.Get(status, "chargingLevelHv").Float()
-	chargeLevel.Set(chargeLevelValue)
-
 }
