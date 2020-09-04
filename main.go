@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -11,6 +12,7 @@ import (
 
 var (
 	password = flag.String("password", "", "BMW Connected Drive password")
+	port     = flag.String("port", "9744", "Exporter port")
 	username = flag.String("username", "", "BMW Connected Drive username")
 )
 
@@ -30,5 +32,5 @@ func main() {
 	go bmwcd.StartPolling(*username, *password)
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":9744", nil)
+	http.ListenAndServe(fmt.Sprintf(":%s", *port), nil)
 }
