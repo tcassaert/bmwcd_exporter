@@ -108,5 +108,5 @@ The `grafana` directory contains a sample dashboard:
 I got a lot of inspiration on how to do the authentication part from [https://github.com/bimmerconnected/bimmer_connected][2]
 This project is not affiliated with or endorsed by BMW Group.
 
-[1] https://prometheus.io
-[2] https://github.com/bimmerconnected/bimmer_connected
+[1]: https://prometheus.io
+[2]: https://github.com/bimmerconnected/bimmer_connected
