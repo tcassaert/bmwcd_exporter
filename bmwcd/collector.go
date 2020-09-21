@@ -95,17 +95,17 @@ func NewCollector(username, password string) *Collector {
 			nil,
 			nil),
 		doorPassengerFront: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "door_passenger_front"),
+			prometheus.BuildFQName(namespace, "", "door_passenger_front_state"),
 			"Door open (0) or closed (1)",
 			nil,
 			nil),
 		doorPassengerRear: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "door_passenger_rear"),
+			prometheus.BuildFQName(namespace, "", "door_passenger_rear_state"),
 			"Door open (0) or closed (1)",
 			nil,
 			nil),
 		hood: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "", "door_hood_state"),
+			prometheus.BuildFQName(namespace, "", "hood_state"),
 			"Hood open (0) or closed (1)",
 			nil,
 			nil),
