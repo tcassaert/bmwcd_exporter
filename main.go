@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
@@ -35,8 +36,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	go bmwcd.StartPolling(*username, *password)
+	//	go bmwcd.StartPolling(*username, *password)
+	collector := bmwcd.NewCollector(*username, *password)
+	prometheus.MustRegister(collector)
 
 	http.Handle("/metrics", promhttp.Handler())
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(`<html>
+			 <head><title>BMW Connected Drive Exporter</title></head>
+			 <body>
+			 <h1>BMW Connected Drive Exporter</h1>
+			 <p><a href='/metrics'>Metrics</a></p>
+			 </body>
+			 </html>`))
+	})
 	http.ListenAndServe(fmt.Sprintf(":%s", *port), nil)
 }

@@ -23,7 +23,7 @@ func convertToEpoch(date string) float64 {
 	return float64(fullTime.Unix())
 }
 
-func getOAuthToken(username, password string) string {
+func getOAuthToken(username, password string) (string, error) {
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
@@ -37,6 +37,7 @@ func getOAuthToken(username, password string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	req.Header.Set("Authorization", "Basic blF2NkNxdHhKdVhXUDc0eGYzQ0p3VUVQOjF6REh4NnVuNGNEanliTEVOTjNreWZ1bVgya0VZaWdXUGNRcGR2RFJwSUJrN3JPSg==")
@@ -47,6 +48,7 @@ func getOAuthToken(username, password string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	headerMap := resp.Header
@@ -57,27 +59,30 @@ func getOAuthToken(username, password string) string {
 
 			if err != nil {
 				log.Errorln(err)
+				return "", err
 			}
 
 			fragments, _ := url.ParseQuery(u.Fragment)
 			if fragments["access_token"] != nil {
 				access_token := strings.Join(fragments["access_token"], "")
-				return access_token
+				return access_token, nil
 			} else {
 				log.Errorln(err)
+				return "", err
 			}
 		}
 	}
-	return ""
+	return "", nil
 }
 
-func getVehicleStatus(token, vin string) string {
+func getVehicleStatus(token, vin string) (string, error) {
 	client := &http.Client{}
 	url := fmt.Sprintf("https://b2vapi.bmwgroup.com/webapi/v1/user/vehicles/%s/status", vin)
 	req, err := http.NewRequest("GET", url, strings.NewReader(""))
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	req.Header.Set("accept", "application/json")
@@ -87,6 +92,7 @@ func getVehicleStatus(token, vin string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	defer resp.Body.Close()
@@ -95,19 +101,21 @@ func getVehicleStatus(token, vin string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	status := gjson.Get(string(body), "vehicleStatus")
-	return status.String()
+	return status.String(), nil
 }
 
-func getVehicleVin(token string) string {
+func getVehicleVin(token string, err error) (string, error) {
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", "https://b2vapi.bmwgroup.com/webapi/v1/user/vehicles", strings.NewReader(""))
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	req.Header.Set("accept", "application/json")
@@ -117,6 +125,7 @@ func getVehicleVin(token string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	defer resp.Body.Close()
@@ -125,19 +134,9 @@ func getVehicleVin(token string) string {
 
 	if err != nil {
 		log.Errorln(err)
+		return "", err
 	}
 
 	vin := gjson.Get(string(body), "vehicles.0.vin")
-	return vin.String()
-}
-
-func StartPolling(username, password string) {
-	vin := getVehicleVin(getOAuthToken(username, password))
-
-	for {
-		token := string(getOAuthToken(username, password))
-		status := getVehicleStatus(token, vin)
-		go jsonToProm(status)
-		time.Sleep(300 * time.Second)
-	}
+	return vin.String(), nil
 }
