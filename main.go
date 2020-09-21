@@ -14,6 +14,7 @@ import (
 )
 
 var (
+	help     = flag.Bool("help", false, "Print help message")
 	password = flag.String("password", "", "BMW Connected Drive password")
 	port     = flag.String("port", "9744", "Exporter port")
 	username = flag.String("username", "", "BMW Connected Drive username")
@@ -22,6 +23,12 @@ var (
 
 func main() {
 	flag.Parse()
+
+	if *help == true {
+		flag.Usage()
+		os.Exit(0)
+	}
+
 	log.Base().SetLevel(*logLevel)
 	log.Infoln("Starting BMW Connected Drive exporter", version.Info())
 	log.Infoln("Build context", version.BuildContext())
@@ -36,7 +43,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	//	go bmwcd.StartPolling(*username, *password)
 	collector := bmwcd.NewCollector(*username, *password)
 	prometheus.MustRegister(collector)
 

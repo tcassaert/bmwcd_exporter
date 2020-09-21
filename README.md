@@ -8,6 +8,8 @@ The exporter only needs your BMW Connected Drive username and password.
 
 ```
 Usage of ./bmwcd_exporter:
+  -help
+        Print help message
   -password string
         BMW Connected Drive password
   -port string
