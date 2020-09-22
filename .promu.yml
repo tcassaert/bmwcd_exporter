@@ -1,0 +1,29 @@
+verbose: true
+go:
+    version: 1.15.2
+    cgo: false
+repository:
+    path: github.com/tcassaert/bmwcd_exporter
+build:
+    prefix: .
+    binaries:
+        - name: bmwcd_exporter
+          path: .
+    flags: -a -tags netgo
+    ldflags: |
+        -s
+        -w
+        -X {{repoPath}}/version.Version={{.Version}}
+        -X {{repoPath}}/version.Revision={{.Revision}}
+        -X {{repoPath}}/version.Branch={{.Branch}}
+        -X {{repoPath}}/version.BuildUser={{user}}@{{host}}
+        -X {{repoPath}}/version.BuildDate={{date "20200922-09:00:00"}}
+tarball:
+    prefix: .
+    files:
+        - LICENSE
+crossbuild:
+    platforms:
+        - linux/amd64
+        - linux/arm
+        - linux/arm64
