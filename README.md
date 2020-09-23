@@ -10,6 +10,8 @@ The exporter only needs your BMW Connected Drive username and password.
 Usage of ./bmwcd_exporter:
   -help
         Print help message
+  -region string
+        Region of the Connected Drive account (cn, rest_of_world, us) (default "rest_of_world")
   -password string
         BMW Connected Drive password
   -port string
@@ -102,8 +104,7 @@ The `grafana` directory contains a sample dashboard:
 
 ## Limitations
 
-  * Only supports 1 car
-  * Only supports Europe
+  * Only supports 1 car [(#4)](https://github.com/tcassaert/bmwcd_exporter/issues/4)
 
 ## Disclaimer
 
