@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 
@@ -24,7 +25,7 @@ func convertToEpoch(date string) float64 {
 	return float64(fullTime.Unix())
 }
 
-func getOAuthToken(username, password string) (string, error) {
+func getOAuthToken(username, password, region string) (string, error) {
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
@@ -34,7 +35,9 @@ func getOAuthToken(username, password string) (string, error) {
 
 	var data = strings.NewReader(url_encoded_data)
 
-	req, err := http.NewRequest("POST", "https://customer.bmwgroup.com/gcdm/oauth/authenticate", data)
+	authUrl := getRegionUrls(region)[0]
+
+	req, err := http.NewRequest("POST", authUrl, data)
 
 	if err != nil {
 		log.Errorln(err)
@@ -76,9 +79,28 @@ func getOAuthToken(username, password string) (string, error) {
 	return "", nil
 }
 
-func getVehicleStatus(token, vin string) (string, error) {
+func getRegionUrls(region string) []string {
+	if region == "rest_of_world" {
+		urls := []string{"https://customer.bmwgroup.com/gcdm/oauth/authenticate", "b2vapi.bmwgroup.com"}
+		return urls
+	} else if region == "us" {
+		urls := []string{"https://customer.bmwgroup.com/gcdm/usa/oauth/authenticate", "b2vapi.bmwgroup.us"}
+		return urls
+	} else if region == "cn" {
+		urls := []string{"https://customer.bmwgroup.com/gcdm/oauth/authenticate", "b2vapi.bmwgroup.cn:8592"}
+		return urls
+	} else {
+		log.Errorln("Unsupported region")
+		os.Exit(1)
+	}
+	return nil
+}
+
+func getVehicleStatus(token, vin, region string) (string, error) {
 	client := &http.Client{}
-	url := fmt.Sprintf("https://b2vapi.bmwgroup.com/webapi/v1/user/vehicles/%s/status", vin)
+	apiUrl := getRegionUrls(region)[1]
+
+	url := fmt.Sprintf("https://%s/webapi/v1/user/vehicles/%s/status", apiUrl, vin)
 	req, err := http.NewRequest("GET", url, strings.NewReader(""))
 
 	if err != nil {
@@ -109,10 +131,11 @@ func getVehicleStatus(token, vin string) (string, error) {
 	return status.String(), nil
 }
 
-func getVehicleVin(token string, err error) (string, error) {
+func getVehicleVin(token, region string) (string, error) {
 	client := &http.Client{}
+	apiUrl := getRegionUrls(region)[1]
 
-	req, err := http.NewRequest("GET", "https://b2vapi.bmwgroup.com/webapi/v1/user/vehicles", strings.NewReader(""))
+	req, err := http.NewRequest("GET", fmt.Sprintf("https://%s/webapi/v1/user/vehicles", apiUrl), strings.NewReader(""))
 
 	if err != nil {
 		log.Errorln(err)

@@ -31,6 +31,7 @@ type Collector struct {
 	oilCheckDueDate              *prometheus.Desc
 	oilCheckRemainingMileage     *prometheus.Desc
 	password                     string
+	region                       string
 	remainingFuel                *prometheus.Desc
 	remainingRangeElectric       *prometheus.Desc
 	remainingRangeHybrid         *prometheus.Desc
@@ -45,7 +46,7 @@ type Collector struct {
 	windowPassengerRear          *prometheus.Desc
 }
 
-func NewCollector(username, password string) *Collector {
+func NewCollector(username, password, region string) *Collector {
 	return &Collector{
 		brakeFluidCheckDueDate: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "brake_fluid_check_cbs_due_date"),
@@ -125,6 +126,7 @@ func NewCollector(username, password string) *Collector {
 			nil,
 			nil),
 		password: password,
+		region:   region,
 		remainingFuel: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "remaining_fuel"),
 			"Remaining liters of fuel in the tank",
@@ -227,7 +229,8 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(c.collectDuration, prometheus.GaugeValue, duration)
 	}()
 
-	vin, err := getVehicleVin(getOAuthToken(c.username, c.password))
+	oAuthToken, _ := getOAuthToken(c.username, c.password, c.region)
+	vin, err := getVehicleVin(oAuthToken, c.region)
 
 	if err != nil {
 		log.Errorln("Failed to get the vehicle VIN")
@@ -236,7 +239,7 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 
-	token, err := getOAuthToken(c.username, c.password)
+	token, err := getOAuthToken(c.username, c.password, c.region)
 
 	if err != nil {
 		log.Errorln("Failed to get an access token")
@@ -245,7 +248,7 @@ func (c *Collector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 
-	status, err := getVehicleStatus(string(token), vin)
+	status, err := getVehicleStatus(string(token), vin, c.region)
 
 	if err != nil {
 		log.Errorln("Failed to get vehicle status")
