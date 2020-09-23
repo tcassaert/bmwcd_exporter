@@ -18,6 +18,7 @@ func convertToEpoch(date string) float64 {
 
 	if err != nil {
 		log.Warnln("Failed to parse time format")
+		return float64(0)
 	}
 
 	return float64(fullTime.Unix())
