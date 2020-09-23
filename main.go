@@ -15,10 +15,11 @@ import (
 
 var (
 	help     = flag.Bool("help", false, "Print help message")
+	logLevel = flag.String("log.level", "INFO", "Amount of logs displayed")
 	password = flag.String("password", "", "BMW Connected Drive password")
 	port     = flag.String("port", "9744", "Exporter port")
+	region   = flag.String("region", "rest_of_world", "Region of the Connected Drive account (cn, rest_of_world, us)")
 	username = flag.String("username", "", "BMW Connected Drive username")
-	logLevel = flag.String("log.level", "INFO", "Amount of logs displayed")
 )
 
 func main() {
@@ -43,7 +44,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	collector := bmwcd.NewCollector(*username, *password)
+	collector := bmwcd.NewCollector(*username, *password, *region)
 	prometheus.MustRegister(collector)
 
 	http.Handle("/metrics", promhttp.Handler())
